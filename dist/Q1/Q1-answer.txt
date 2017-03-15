@@ -1,0 +1,29 @@
+PRODUCER:
+
+
+timer_trick(}
+{
+	synchronized(queue){
+		queue.add(Math.random());
+		queue.notifyAll();
+	}
+}
+
+
+
+
+CONSUMER:
+
+
+while(true)
+{
+	synchronized(queue){
+		while(queue.size() == 0)
+		{
+			queue.wait();
+		}
+		var e1 = queue.remove(0);
+	}
+	processElement(e1);
+	
+}
